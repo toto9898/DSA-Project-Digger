@@ -4,7 +4,9 @@
 Object::Object(SDL_Renderer*& renderer, SDL_Texture* texture, SDL_Texture* emptyTexture):
 	texture(texture),
 	emptyTexture(emptyTexture),
-	pos{0,0,0,0}
+	pos{0,0,0,0},
+	curr(currBlock()),
+	prev(currBlock())
 {
 	if (emptyTexture == nullptr)
 		emptyTexture = texture;

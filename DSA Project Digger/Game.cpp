@@ -37,15 +37,16 @@ void Game::update(Move move, bool shoot)
 		if (collision(player, enemy))
 		{
 			player.erase(renderer);
-			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-			SDL_Rect rect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
-			SDL_RenderDrawRect(renderer, &rect);
+			SDL_SetRenderTarget(renderer, textures.soilTexture);
+			
+			SDL_RenderCopy(renderer, textures.emptyPlayerTexture, NULL, NULL);
+			SDL_RenderPresent(renderer);
 
 			Object gameover(renderer, textures.gameOverTexture);
 			gameover.draw(renderer);
 
-			SDL_RenderPresent(renderer);
+			showSoilLayer();
 
 			return;
 		}
@@ -53,15 +54,16 @@ void Game::update(Move move, bool shoot)
 
 	if (emeralds.empty())
 	{
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-		SDL_Rect rect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+		SDL_SetRenderTarget(renderer, textures.soilTexture);
 
-		SDL_RenderDrawRect(renderer, &rect);
+		SDL_RenderCopy(renderer, textures.emptyPlayerTexture, NULL, NULL);
+		SDL_RenderPresent(renderer);
+
 
 		Object win(renderer, textures.winTexture);
 		win.draw(renderer);
-
-		SDL_RenderPresent(renderer);
+		
+		showSoilLayer();
 
 		return;
 	}
