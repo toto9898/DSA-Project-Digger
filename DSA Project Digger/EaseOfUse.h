@@ -58,21 +58,20 @@ struct COORD
 };
 
 
-struct Textures
+const struct Textures
 {
-	Textures(SDL_Renderer* renderer)
+	Textures(SDL_Renderer* renderer):
+		playerTexture(IMG_LoadTexture(renderer, PLAYER_TEXTURE_PATH)),
+		emptyPlayerTexture(IMG_LoadTexture(renderer, PLAYER_TEXTURE_EMPTY_PATH)),
+		enemyTexture(IMG_LoadTexture(renderer, ENEMY_TEXTURE_PATH)),
+		soilTexture(SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_WIDTH, SCREEN_HEIGHT)),
+		emeraldTexture(IMG_LoadTexture(renderer, EMERALD_TEXTURE_PATH)),
+		bagTexture(IMG_LoadTexture(renderer, BAG_TEXTURE_PATH)),
+		bulletTexture(IMG_LoadTexture(renderer, BULLET_TEXTURE_PATH)),
+		tunnelBlockTexture(IMG_LoadTexture(renderer, TUNNEL_TEXTURE_PATH)),
+		gameOverTexture(IMG_LoadTexture(renderer, GAME_OVER_PATH)),
+		winTexture(IMG_LoadTexture(renderer, WIN_TEXTURE_PATH))
 	{
-		playerTexture = IMG_LoadTexture(renderer, PLAYER_TEXTURE_PATH);
-		emptyPlayerTexture = IMG_LoadTexture(renderer, PLAYER_TEXTURE_EMPTY_PATH);
-		enemyTexture = IMG_LoadTexture(renderer, ENEMY_TEXTURE_PATH);
-		soilTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_WIDTH, SCREEN_HEIGHT);
-		emeraldTexture = IMG_LoadTexture(renderer, EMERALD_TEXTURE_PATH);
-		bagTexture = IMG_LoadTexture(renderer, BAG_TEXTURE_PATH);
-		bulletTexture = IMG_LoadTexture(renderer, BULLET_TEXTURE_PATH);
-		tunnelBlockTexture = IMG_LoadTexture(renderer, TUNNEL_TEXTURE_PATH);
-		gameOverTexture = IMG_LoadTexture(renderer, GAME_OVER_PATH);
-		winTexture = IMG_LoadTexture(renderer, WIN_TEXTURE_PATH);
-
 	}
 	SDL_Texture* playerTexture;
 	SDL_Texture* emptyPlayerTexture;
